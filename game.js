@@ -1,13 +1,13 @@
 const grid = document.querySelector('.grid');
 const scoreDisplay = document.querySelector('score')
-
+let sqaures = []
 // 28 * 28  = 784
  // 0 - pac-dots
   // 1 - wall
   // 2 - ghost-lair
   // 3 - power-pellet
   // 4 - empty
-  
+
 const layout = [
   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
     1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -38,3 +38,14 @@ const layout = [
     1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 
 ]
+
+function createBoard() {
+ for (let i = 0; i < layout.length; i++) {
+   const square = document.createElement('div')
+   grid.appendChild(square)
+   sqaures.push(square)
+   console.log(sqaures)
+ }
+}
+
+createBoard();
