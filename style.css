@@ -1,4 +1,4 @@
-html, 
+ html, 
 body {
   margin: 10px;
   padding: 10px;
@@ -15,7 +15,6 @@ body {
 .grid div {
   width: 15px;
   height: 15px;
-  background-color: blue;
 }
 
 .pac-dot {
@@ -25,10 +24,10 @@ body {
 }
 
 .wall { 
-  background-color: blue;
+   background-color: blue; 
 }
 
-.power-pallet {
+.power-pellet {
   background-color: green;
   border-radius: 7.5px;
 }
@@ -36,4 +35,7 @@ body {
 .pacman {
   background-color: yellow;
   border-radius: 7.5px;
-}
+  border: none;
+} 
+
+ 
