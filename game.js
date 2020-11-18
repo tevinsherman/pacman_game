@@ -1,6 +1,8 @@
+const width = 28;
 const grid = document.querySelector('.grid');
-const scoreDisplay = document.querySelector('score')
-let sqaures = []
+const scoreDisplay = document.getElementById('score')
+let squares = []
+// squares
 // 28 * 28  = 784
  // 0 - pac-dots
   // 1 - wall
@@ -39,13 +41,56 @@ const layout = [
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 
 ]
 
+
 function createBoard() {
- for (let i = 0; i < layout.length; i++) {
-   const square = document.createElement('div')
-   grid.appendChild(square)
-   sqaures.push(square)
-   console.log(sqaures)
- }
+  //for loop 
+  for (let i = 0; i < layout.length; i++) {
+      //create a square 
+      const square = document.createElement('div')
+      //put square in grid 
+      grid.appendChild(square)
+      //put square in squares array
+      squares.push(square)
+
+      if (layout[i] === 0) {
+          squares[i].classList.add('pac-dot')
+      } else if (layout[i] === 1) {
+          squares[i].classList.add('wall')
+      } else if (layout[i] === 3) {
+          squares[i].classList.add('power-pellet')
+      }
+      
+  }
+}
+createBoard()
+
+
+//starting position of pacman 
+let pacmanCurrentIndex = 490
+
+squares[pacmanCurrentIndex].classList.add('pacman')
+
+// KeyCodes
+// down - 40
+// up key - 38
+// left - 37
+// right - 39
+
+function control(e) {
+  switch (e.keycode) {
+    case 40:
+      console.log('pressed down')
+      break;
+      case 38:
+        console.log('pressed up')
+      break;
+      case 37:
+        console.log('pressed left')
+      break;
+      case 39:
+        console.log('pressed right')
+        break;  
+  }
 }
 
-createBoard();
+document.addEventListener('keycode', control)
