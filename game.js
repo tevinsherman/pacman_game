@@ -142,3 +142,31 @@ function pocDotEaten(){ {
     scoreDisplay.innerHTML = score
   }
 }
+
+ class Ghost {
+   constructor(className, ghostIndex, speed) {
+     this.className = className
+     this.ghostIndex = ghostIndex
+     this.speed = speed
+     this.currentIndex = ghostIndex
+     this.isScared = false;
+     this.timer = NaN
+   }  
+ }
+
+ const ghosts = [
+     new Ghost('blinky', 348, 250),
+     new Ghost('pinky', 376, 400),
+     new Ghost('inky', 351, 300),
+     new Ghost('clyde', 379, 500)
+   ]
+
+ghosts.forEach(ghost => squares[ghost.ghostIndex].classList.add(ghost.className));
+ghosts.forEach(ghost => moveGhost(ghost))
+
+
+function moveGhost(ghost) {
+  const directons = [-1, +1, -width, +width]
+  let direction = direction[math.floor(math.random() * direction.length)]
+}
+
