@@ -1,6 +1,7 @@
 const width = 28;
 const grid = document.querySelector('.grid');
 const scoreDisplay = document.getElementById('score')
+let score = 0
 let squares = []
 // squares
 // 28 * 28  = 784
@@ -106,7 +107,11 @@ function control(e) {
         !squares[pacmanCurrentIndex -1].classList.contains('wall') &&
         pacmanCurrentIndex % width !== 0
       )
-        pacmanCurrentIndex -= 1
+      pacmanCurrentIndex -= 1
+        if (pacmanCurrentIndex === 364) {
+          pacmanCurrentIndex = 391
+        }
+        
       break;
     case 39:
       console.log('pressed right')
@@ -115,12 +120,24 @@ function control(e) {
         !squares[pacmanCurrentIndex +1].classList.contains('wall') &&
         pacmanCurrentIndex % width !== 0
       )
-        pacmanCurrentIndex += 1
+      pacmanCurrentIndex += 1
+      if (pacmanCurrentIndex === 391) {
+        pacmanCurrentIndex = 364
+      }
         break;  
   }
+  
   squares[pacmanCurrentIndex].classList.add('pacman')
+  pocDotEaten()
 }
 
 
 
 document.addEventListener('keyup', control)
+
+function pocDotEaten(){ {
+  if (squares[pacmanCurrentIndex].classList.contains('pac-dot'))
+  score++  
+    scoreDisplay.innerHTML = score
+  }
+}
