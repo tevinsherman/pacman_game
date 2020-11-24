@@ -1,8 +1,8 @@
 const width = 28;
 const grid = document.querySelector('.grid');
 const scoreDisplay = document.getElementById('score')
-let score = 0
 let squares = []
+let score = 0
 // squares
 // 28 * 28  = 784
  // 0 - pac-dots
@@ -161,12 +161,39 @@ function pocDotEaten(){ {
      new Ghost('clyde', 379, 500)
    ]
 
-ghosts.forEach(ghost => squares[ghost.ghostIndex].classList.add(ghost.className));
+ghosts.forEach(ghost => {
+  squares[ghost.ghostIndex].classList.add(ghost.className)
+  squares[ghost.ghostIndex].classList.add('ghost')
+
+})
+// Move ghost
 ghosts.forEach(ghost => moveGhost(ghost))
 
 
-function moveGhost(ghost) {
-  const directons = [-1, +1, -width, +width]
-  let direction = direction[math.floor(math.random() * direction.length)]
-}
 
+ function moveGhost(ghost) {
+   console.log('moved ghost')
+   const directions = [-1, +1, -width, +width]
+   let direction = directions[Math.floor(Math.random() * directions.length)]
+   console.log(direction)
+  
+   ghost.timerId = setInterval(function() {
+       //all our code
+     if (!squares[ghost.currentIndex + direction].classList.contains('wall') &&
+     !squares[ghost.currentIndex + direction].classList.contains('ghost')) {
+       
+       //remove any ghost
+       squares[ghost.currentIndex].classList.remove(ghost.className)
+       squares[ghost.currentIndex].classList.remove('ghost')
+       //add direction to current Index
+       ghost.currentIndex += direction
+       //add ghost class
+       squares[ghost.currentIndex].classList.add(ghost.className)
+       squares[ghost.currentIndex].classList.add('ghost')
+     } else direction = directions[Math.floor(Math.random() * directions.length)]
+       
+   }, ghost.speed )
+  
+ }
+
+  
