@@ -128,14 +128,12 @@ function control(e) {
   }
   
   squares[pacmanCurrentIndex].classList.add('pacman')
-  pocDotEaten()
+  pacDotEaten()
+  powerPelletEaten()
 }
-
-
-
 document.addEventListener('keyup', control)
 
-function pocDotEaten(){ 
+function pacDotEaten(){ 
   if (squares[pacmanCurrentIndex].classList.contains('pac-dot')) {
     squares[pacmanCurrentIndex].classList.remove('pac-dot')
   score++  
@@ -143,18 +141,19 @@ function pocDotEaten(){
   }
 }
 
-function powerDotEaten() {
+function powerPelletEaten() {
   if (squares[pacmanCurrentIndex].classList.contains('power-pellet')) {
-    score += 10;
+    squares[pacmanCurrentIndex].classList.remove('power-pellet')
+    score +=10;
     // Ghost is scared
     ghosts.forEach(ghost => ghost.isScared = true)
 
-    setTimeout(function(), 10000)
+    setTimeout(unScareGhosts, 100000)
     
   }
 }
  
-function ghostIsScared() {
+function unScareGhosts() {
   ghost.forEach(ghost => ghost.isScared = false);
 }
 
@@ -206,8 +205,24 @@ ghosts.forEach(ghost => moveGhost(ghost))
        squares[ghost.currentIndex].classList.add(ghost.className)
        squares[ghost.currentIndex].classList.add('ghost')
      } else direction = directions[Math.floor(Math.random() * directions.length)]
+
+     if (ghost.isScared) {
+       squares[ghost.currentIndex].classList.add('scared-ghost')
+     }
+
+     if (ghost.isScared && squares[ghost.currentIndex].classList.contains('pacman')) {
+      squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost')
+ 
+      ghost.currentIndex = ghost.ghostIndex
+ 
+      score += 100
+      
+      squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
+    }
        
-   }, ghost.speed )
+   }, ghost.speed)
+   
+   
   
  }
 
