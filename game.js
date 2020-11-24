@@ -135,12 +135,27 @@ function control(e) {
 
 document.addEventListener('keyup', control)
 
-function pocDotEaten(){ {
-  if (squares[pacmanCurrentIndex].classList.contains('pac-dot'))
+function pocDotEaten(){ 
+  if (squares[pacmanCurrentIndex].classList.contains('pac-dot')) {
     squares[pacmanCurrentIndex].classList.remove('pac-dot')
   score++  
     scoreDisplay.innerHTML = score
   }
+}
+
+function powerDotEaten() {
+  if (squares[pacmanCurrentIndex].classList.contains('power-pellet')) {
+    score += 10;
+    // Ghost is scared
+    ghosts.forEach(ghost => ghost.isScared = true)
+
+    setTimeout(function(), 10000)
+    
+  }
+}
+ 
+function ghostIsScared() {
+  ghost.forEach(ghost => ghost.isScared = false);
 }
 
  class Ghost {
