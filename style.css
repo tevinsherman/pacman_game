@@ -24,11 +24,11 @@ body {
 }
 
 .wall { 
-   background-color: blue; 
+   background-color: rgba(34, 12, 236, 0.918); 
 }
 
 .power-pellet {
-  background-color: green;
+  background-color: blue;
   border-radius: 7.5px;
 }
 
@@ -55,6 +55,11 @@ body {
 
 .clyde {
   background-color: orange;
+  border: none;
+}
+
+.scared-ghost {
+  background-color: royalblue;
   border: none;
 }
  
